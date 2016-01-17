@@ -1,6 +1,7 @@
 class OwnershipsController < ApplicationController
   before_action :logged_in_user
-
+  before_action :check_type, only: [:create, :destroy]
+  
   def create
     if params[:asin]
       @item = Item.find_or_initialize_by(asin: params[:asin])
@@ -35,7 +36,16 @@ class OwnershipsController < ApplicationController
     # TODO ユーザにwant or haveを設定する
     # params[:type]の値ににHaveボタンが押された時には「Have」,
     # Wantボタンがされた時には「Want」が設定されています。
+    if params[:type] == 'Want'
+      current_user.want(@item)
+    elsif params[:type] == 'Have'
+      current_user.have(@item)
+    end
     
+    # def want
+    #   @item = Item.find(params[:type])
+    #   @items = @item.want
+    # end
 
   end
 
@@ -47,4 +57,12 @@ class OwnershipsController < ApplicationController
     # Wantedボタンがされた時には「Want」が設定されています。
 
   end
+  
+  private
+
+  def check_type
+    fail SecurityError if params[:type] != 'Want' && params[:type] != 'Have'
+  end
+
+
 end
