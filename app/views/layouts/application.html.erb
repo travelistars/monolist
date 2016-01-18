@@ -12,13 +12,9 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'favicon.ico' %>
-  
-  <% #description %>
-  <% if content_for?(:description) %>
-  <%= yield :description %>
-  <% else %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <% end %>
+  <% #description %>
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Monolist" %>">
   
 </head>
 <body>
