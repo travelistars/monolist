@@ -11,16 +11,15 @@
     <div class="item-single-main">
       <div class="image">
         <div class="img-wrap">
-
-              <% if item.get('LargeImage/URL').present? %>
-                <%= image_tag(item.get('LargeImage/URL'), alt: item.get('ItemAttributes/Title')) %>
-            　<% else %>
-                 <%= image_tag("no-image.png" , alt: item.get('ItemAttributes/Title')) %>
-            　<% end %>
           <% #TODO 商品イメージ %>
 
           <% #image_tag("no-image.png" , alt: @item.title) %>
-        
+                      <% if item.get('ItemAttributes/LargeImages').present? %>
+                <%= image_tag("large_image" , alt: item.get('ItemAttributes/Title')) %>
+             <% else %>
+                 <%= image_tag("no-image.png" , alt: item.get('ItemAttributes/Title')) %>
+             <% end %>
+
         </div>
       </div>
       <div class="title">
