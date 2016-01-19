@@ -4,10 +4,14 @@
    <h3>Want Rankings</h3>
     <% if @items.any? %>
       <ul class="ranking">
-        <% @items.each do |item| %>
+          <% previous_item = @items.first %>
+          <% rank = 0 %>
+        <% @items.each.with_index(1) do |item, index| %>
         <ul>
+          <% rank = index if @ranking[item.id] == @ranking[previous_item.id] %>
+          <% previous_item = item %>
           
-          
+          <%= rank %>位
           <%= link_to image_tag(item.small_image , alt: item.title) , item %>
           <%= link_to item.title , item %>
 
