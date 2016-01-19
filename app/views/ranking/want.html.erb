@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+   <h3>Want Rankings</h3>
+    <% if @items.any? %>
+      <ul class="ranking">
+        <% @items.each do |item| %>
+        <ul>
+          
+          
+          <%= link_to image_tag(item.small_image , alt: item.title) , item %>
+          <%= link_to item.title , item %>
+
+          </ul>
+
+        <% end %>
+      </ul>
+    <% end %>
+    </div>
+</div>
