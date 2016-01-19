@@ -12,8 +12,13 @@
           <% previous_item = item %>
           
           <%= rank %>位
+          <% if item.small_image.present? %>
     
-          <%= link_to image_tag(item.small_image , alt: item.title) , item %>
+              <%= link_to image_tag(item.small_image , alt: item.title) , item %>
+          <% else %>
+              <%= link_to image_tag("no-image.png" , size: '80', alt: item.title) , item %>
+          <% end %>
+          
           <%= link_to item.title , item %>
 
           </ul>
